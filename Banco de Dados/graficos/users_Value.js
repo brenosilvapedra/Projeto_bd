@@ -1,11 +1,11 @@
-import { getCSS } from './comum';
+import { getCSS } from './comum.js';
 
 
 async function users_network() {
     const url = 'https://raw.githubusercontent.com/guilhermeonrails/api/main/numero-usuarios.json';
     const res = await fetch(url);
     const dados = await res.json();
-    const nome_Redes = Object.values(dados);
+    const nome_Redes = Object.keys(dados);
     const quantidade_Users = Object.values(dados);
 
     const data = [
@@ -14,7 +14,7 @@ async function users_network() {
             y: quantidade_Users,
             type: 'bar',
             marker: {
-                color: getCSS('--primary-color')
+                color: "purple",
             }
         }
     ];
@@ -22,10 +22,28 @@ async function users_network() {
     const layout = {
         plot_bgColor: getCSS('--bg-color'),
         paper_bgColor: getCSS('--bg-color'),
+        xaxis: {
+            title: {
+                text: 'nome das redes sociais',
+                font: {
+                    color: getCSS('--secondary-color')
+                }
+            }
+        },
+        yaxis: {
+            title: {
+                text: 'bilhões de usuários ativos',
+                font: {
+                    color: getCSS('--secondary-color')
+                }
+            }
+        }
     };
 
     const grafico = document.createElement('div');
-    grafico.className = 'grafico';
-    document.getElementById('grafico-container').appendChild(grafico);
+    grafico.className = 'graficos';
+    document.getElementById('graficos-container').appendChild(grafico);
     Plotly.newPlot(grafico, data, layout)
 }
+
+users_network()
