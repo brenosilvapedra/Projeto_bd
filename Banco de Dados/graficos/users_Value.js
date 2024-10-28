@@ -1,4 +1,4 @@
-import { getCSS } from './comum.js';
+import { getCSS, tickConfig } from './comum.js';
 
 
 async function users_network() {
@@ -20,9 +20,10 @@ async function users_network() {
     ];
 
     const layout = {
-        plot_bgColor: getCSS('--bg-color'),
-        paper_bgColor: getCSS('--bg-color'),
+        plot_bgcolor: getCSS('--bg-color'),
+        paper_bgcolor: getCSS('--bg-color'),
         xaxis: {
+            tickfont: tickConfig,
             title: {
                 text: 'nome das redes sociais',
                 font: {
@@ -31,6 +32,7 @@ async function users_network() {
             }
         },
         yaxis: {
+            tickfont: tickConfig,
             title: {
                 text: 'bilhões de usuários ativos',
                 font: {
